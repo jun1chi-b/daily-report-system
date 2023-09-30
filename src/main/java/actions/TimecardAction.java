@@ -57,7 +57,8 @@ public class TimecardAction extends ActionBase {
         List<Map<LocalDate,TimecardView>> days = getDayList(year,month,allDay,timecards);
 
         putRequestScope(AttributeConst.TIM_DAYS,days);
-
+        putRequestScope(AttributeConst.TIM_YEAR, year);
+        putRequestScope(AttributeConst.TIM_MONTH, month);
 
         //セッションにフラッシュメッセージが設定されている場合はリクエストスコープに移し替え、セッションからは削除する
         String flush = getSessionScope(AttributeConst.FLUSH);

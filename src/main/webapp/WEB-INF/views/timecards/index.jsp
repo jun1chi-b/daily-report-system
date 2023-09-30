@@ -20,21 +20,41 @@
             </div>
         </c:if>
         <h2>タイムカード　一覧</h2>
-
-        <select>
+        <script>
+        function changeYear(obj){
+            let idx = obj.selectedIndex;
+            let selectyear = obj.options[idx].value;
+            let url = new URL(windows.location.href);
+            let params = url.searchParams;
+            if(params.get('year')){
+                params.set('year',selectyear)
+            }
+            location.href =url;
+        }
+        function changeMonth(obj){
+            let idx = obj.selectedIndex;
+            let selectmonth = obj.options[idx].value;
+            let url = new URL(windows.location.href);
+            let params = obj.selectedIndex;
+            if(params.get('month')){
+                params.set('month',selectmonth)
+            }
+            location.href =url;
+        }
+        </script>
+        <select name="selectYear" onchange="changeYear(this)">
         <c:forEach begin="2000" end="2030" step="1" var="i">
-        <option value="year${i}"><c:out value="${i}"/></option>
+        <option value="${i}" <c:if test="${i == year}"> selected </c:if>><c:out value="${i}"/></option>
         </c:forEach>
         </select>
         年
-        <select>
+        <select name="selectMonth" onchange="changeMonth(this)">
         <c:forEach begin="1" end="12" step="1" var="i">
-        <option value="${i}"<c:if test="${i == timecard.clockOut.getMinute()}"> selected </c:if>><c:if test="${i < 10}">0</c:if><c:out value="${i}"/></option>
+        <option value="${i}"<c:if test="${i == month}"> selected </c:if>><c:if test="${i < 10}">0</c:if><c:out value="${i}"/></option>
         </c:forEach>
         </select>
         月
         <br />
-
         <table id="timecard_list">
             <tbody>
                 <tr>
