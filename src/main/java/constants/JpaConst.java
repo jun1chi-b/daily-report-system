@@ -40,14 +40,28 @@ public interface JpaConst {
     String REP_COL_CREATED_AT = "created_at"; //登録日時
     String REP_COL_UPDATED_AT = "updated_at"; //更新日時
 
+    //タイムカードテーブル
+    String TABLE_TIM = "timecards"; //テーブル名
+    //タイムカードテーブルカラム
+    String TIM_COL_ID = "id"; //id
+    String TIM_COL_TIM_DATE = "timecard_date"; //登録内容の日付
+    String TIM_COL_EMP = "employee_id"; //タイムカードを登録した従業員のid
+    String TIM_CLOCK_IN = "clock_in"; //出勤時間
+    String TIM_CLOCK_OUT = "clock_out"; //退勤時間
+    String TIM_WORKING_HOURS = "working_hours"; //勤務時間
+    String TIM_OVERTIME = "overtime"; //残業時間
+
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
+    String ENTITY_TIM = "timecard"; //タイムカード
 
     //JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; //社員番号
     String JPQL_PARM_PASSWORD = "password"; //パスワード
     String JPQL_PARM_EMPLOYEE = "employee"; //従業員
+    String JPQL_PARM_FIRST_DAY = "firstDay"; //年月の初日
+    String JPQL_PARM_LAST_DAY = "lastDay"; //年月の初日
 
     //NamedQueryの nameとquery
     //全ての従業員をidの降順に取得する
@@ -74,5 +88,11 @@ public interface JpaConst {
     //指定した従業員が作成した日報の件数を取得する
     String Q_REP_COUNT_ALL_MINE = ENTITY_REP + ".countAllMine";
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
+    //タイムカードを1件取得
+    String Q_TIM_GET_TIMECARD = ENTITY_TIM + ".getTimecard";
+    String Q_TIM_GET_TIMECARD_DEF = "SELECT t FROM Timecard AS t WHERE t.employee = :" + JPQL_PARM_EMPLOYEE + " AND t.timecardDate = DATE_FORMAT(:timecard_date,'%Y-%m-%d')";
+    //年月毎のタイムカードを取得
+    String Q_TIM_GET_MONTH_TIMECARD = ENTITY_TIM + ".getMonthTimecard";
+    String Q_TIM_GET_MONTH_TIMECARD_DEF = "SELECT t FROM Timecard AS t WHERE t.employee = :" + JPQL_PARM_EMPLOYEE + " AND t.timecardDate BETWEEN DATE_FORMAT(:firstDay,'%Y-%m-%d') AND DATE_FORMAT(:lastDay,'%Y-%m-%d')";
 
 }

@@ -48,7 +48,27 @@ public enum AttributeConst {
     REP_ID("id"),
     REP_DATE("report_date"),
     REP_TITLE("title"),
-    REP_CONTENT("content_msg");
+    REP_CONTENT("content_msg"),
+
+    //タイムカード
+    TIMECARD("timecard"),
+    TIMECARDS("timecards"),
+    TIM_DATE("timecard_date"),
+    TIM_EMP_ID("employee_id"),
+    TIM_CLOCK_IN("clock_in"),
+    TIM_CLOCK_OUT("clock_out"),
+    TIM_WORKING_HOURS("working_hours"),
+    TIM_OVERTIME("overtime"),
+    TIM_YEAR("year"),
+    TIM_MONTH("month"),
+    TIM_DAY("day"),
+    TIM_DAYS("days"),
+    TIM_CLOCK_IN_H("clock_in_hour"),
+    TIM_CLOCK_IN_M("clock_in_minute"),
+    TIM_CLOCK_OUT_H("clock_out_hour"),
+    TIM_CLOCK_OUT_M("clock_out_minute"),
+    TIM_WORKING_HOURS_H("working_hours_hour"),
+    TIM_WORKING_HOURS_M("working_hours_minute");
 
     private final String text;
     private final Integer i;

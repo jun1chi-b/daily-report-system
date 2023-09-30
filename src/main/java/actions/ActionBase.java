@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -184,6 +185,18 @@ public abstract class ActionBase {
             return LocalDate.now();
         }
         return LocalDate.parse(strDate);
+    }
+
+    /**
+     * 文字列をLocalTime型に変換する
+     * @param strTime 変換前文字列
+     * @return 変換後LocalTimeインスタンス
+     */
+    protected LocalTime toLocalTime(String strTime) {
+        if (strTime == null || strTime.equals("")) {
+            return LocalTime.now();
+        }
+        return LocalTime.parse(strTime);
     }
 
     /**
