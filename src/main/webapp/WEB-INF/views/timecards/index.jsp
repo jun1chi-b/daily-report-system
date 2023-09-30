@@ -24,7 +24,7 @@
         function changeYear(obj){
             let idx = obj.selectedIndex;
             let selectyear = obj.options[idx].value;
-            let url = new URL(windows.location.href);
+            let url = new URL(window.location.href);
             let params = url.searchParams;
             if(params.get('year')){
                 params.set('year',selectyear)
@@ -34,8 +34,8 @@
         function changeMonth(obj){
             let idx = obj.selectedIndex;
             let selectmonth = obj.options[idx].value;
-            let url = new URL(windows.location.href);
-            let params = obj.selectedIndex;
+            let url = new URL(window.location.href);
+            let params = url.searchParams;
             if(params.get('month')){
                 params.set('month',selectmonth)
             }

@@ -154,6 +154,10 @@ public class TopAction extends ActionBase {
             if(time.getMinute() % 5 != 0){
                 time = time.minusMinutes(time.getMinute() % 5);
             }
+            if(time.isBefore(tv.getClockIn())){
+                time = tv.getClockIn();
+            }
+
             // 勤務時間・残業時間
             LocalTime working = tv.getClockIn().minusHours(time.getHour()).minusMinutes((time.getMinute()));
 

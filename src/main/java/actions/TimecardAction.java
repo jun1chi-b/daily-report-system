@@ -169,9 +169,7 @@ public class TimecardAction extends ActionBase {
 
             //入力された日報内容を設定する
             LocalDate date = toLocalDate(getRequestParam(AttributeConst.TIM_DATE));
-            int cih = toNumber(getRequestParam(AttributeConst.TIM_CLOCK_IN_H));
-            int cim = toNumber(getRequestParam(AttributeConst.TIM_CLOCK_IN_M));
-            LocalTime clockIn = LocalTime.of(cih,cim);
+            LocalTime clockIn = LocalTime.of(toNumber(getRequestParam(AttributeConst.TIM_CLOCK_IN_H)),toNumber(getRequestParam(AttributeConst.TIM_CLOCK_IN_M)));
             LocalTime clockOut = LocalTime.of(toNumber(getRequestParam(AttributeConst.TIM_CLOCK_OUT_H)), toNumber(getRequestParam(AttributeConst.TIM_CLOCK_OUT_M)));
             LocalTime workingHours = LocalTime.of(toNumber(getRequestParam(AttributeConst.TIM_WORKING_HOURS_H)), toNumber(getRequestParam(AttributeConst.TIM_WORKING_HOURS_M)));
             LocalTime overtime = null;

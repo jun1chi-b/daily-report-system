@@ -1,7 +1,6 @@
 package services;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.NoResultException;
@@ -12,6 +11,7 @@ import actions.views.TimecardConverter;
 import actions.views.TimecardView;
 import constants.JpaConst;
 import models.Timecard;
+import models.validators.TimecardValidator;
 
 /**
  * 従業員テーブルの操作に関わる処理を行うクラス
@@ -62,8 +62,10 @@ public class TimecardService extends ServiceBase {
      * @return バリデーションで発生したエラーのリスト
      */
     public List<String> clockIn(TimecardView tv) {
-        List<String> errors = new ArrayList<String>();
+        List<String> errors = TimecardValidator.validate(tv);
+        if(errors.size() == 0) {
         createInternal(tv);
+        }
         return errors;
     }
     /**
@@ -72,8 +74,10 @@ public class TimecardService extends ServiceBase {
      * @return バリデーションで発生したエラーのリスト
      */
     public List<String> create(TimecardView tv) {
-        List<String> errors = new ArrayList<String>();
+        List<String> errors = TimecardValidator.validate(tv);
+        if(errors.size() == 0) {
         createInternal(tv);
+        }
         return errors;
     }
 
@@ -85,7 +89,7 @@ public class TimecardService extends ServiceBase {
      */
     public List<String> update(TimecardView tv) {
 
-        List<String> errors = new ArrayList<String>();
+        List<String> errors = TimecardValidator.validate(tv);
         if (errors.size() == 0) {
             updateInternal(tv);
         }
