@@ -203,7 +203,7 @@ public class TimecardAction extends ActionBase {
                 //更新中にエラーが発生した場合
 
                 putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
-                putRequestScope(AttributeConst.REPORT, tv); //入力された日報情報
+                putRequestScope(AttributeConst.TIMECARD, tv); //入力された日報情報
                 putRequestScope(AttributeConst.ERR, errors); //エラーのリスト
 
                 //編集画面を再表示

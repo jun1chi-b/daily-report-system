@@ -36,7 +36,7 @@ public class TimecardValidator {
      */
     private static String validateClock(LocalTime clockIn, LocalTime clockOut) {
         if(clockIn != null && clockOut != null) {
-            if (!(clockIn.isBefore(clockOut))) {
+            if (clockIn.isAfter(clockOut)) {
                 return MessageConst.E_CLOCK.getMessage();
             }
         }
