@@ -159,7 +159,7 @@ public class TopAction extends ActionBase {
             }
 
             // 勤務時間・残業時間
-            LocalTime working = tv.getClockIn().minusHours(time.getHour()).minusMinutes((time.getMinute()));
+            LocalTime working = time.minusHours(tv.getClockIn().getHour()).minusMinutes((tv.getClockIn().getMinute()));
 
             if(working.isAfter(LocalTime.of(8,0))) {
                 working = working.minusHours(1);
